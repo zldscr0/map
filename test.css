@@ -43,14 +43,7 @@ header .time{
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.25rem;
   }
-  /*mainbox*/
-  .mainbox {
-    display: flex;
-    min-width: 1024px;
-    max-width: 1920px;
-    margin: 0 auto;
-    padding: 0.125rem 0.125rem 0;
-  }
+  
 /*颜色*/
 .grey{
     color:grey;
