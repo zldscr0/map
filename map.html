@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<link rel="stylesheet" type="text/css" href="index.css">
+
+</head>
+
+<body>
+<script src = "js/flexible.js"></script>
+<script src = "js/time.js"></script>
+<script src = "js/echarts.min.js"></script>
+<script src="js/china.js"></script>
+<script src="js/province.js"></script>
+<script src="js/nanjing.js"></script>
+<script src="js/jiangsu2.js"></script>
+
+
+
+<header>
+    <h1 class="center white">数字普惠金融指数</h1>
+  <!--  <div class="time"></div>-->
+</header>
+<!--
+<div class ="white">2022.3.11 测试使用
+    <input type="text"><button>搜索<br></button>
+     </div>
+     <p id="demo"><button type="button" onclick="time()">显示时间</button></p>
+-->
+<!--Mainpage-->
+ 
+     
+<script src="js/demo.js"></script>
+<!--柱形图-->
+<div id="main" class="panel">
+  <script type="text/javascript">
+   var myChart = echarts.init(document.getElementById('main'));
+   var option = {
+title: {
+  text: '普惠金融指数最高的十个省份'
+},
+tooltip: {
+  trigger: 'axis'
+},
+legend: {
+  data: ['指数']
+},
+toolbox: {
+  show: true,
+  feature: {
+    dataView: { show: true, readOnly: false },
+    magicType: { show: true, type: ['line', 'bar'] },
+    restore: { show: true },
+    saveAsImage: { show: true }
+  }
+},
+
+calculable: true,
+xAxis: [
+  {
+    type: 'category',
+    // prettier-ignore
+    data: ['上海', '北京', '浙江', '江苏', '湖北', '福建', '广东', '山东', '天津', '安徽']
+    /*
+    , '河南', '湖南','陕西','江西','重庆','四川','河北','广西','云南','辽宁','吉林','海南',
+  '山西','贵州','黑龙江','青海','内蒙古','甘肃','新疆','西藏','宁夏']*/
+  }
+],
+yAxis: [
+  {
+    type: 'value',
+    axisLabel: {
+    color: '#999',
+  },
+  min:400,
+    max:460
+  }
+],
+series: [
+  {
+    name: '指数',
+    type: 'bar',
+    showBackground: true,
+    itemStyle: {
+      color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+        { offset: 0, color: '#83bff6' },
+        { offset: 0.5, color: '#188df0' },
+        { offset: 1, color: '#188df0' }
+      ])
+    },
+    emphasis: {
+      itemStyle: {
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          { offset: 0, color: '#2378f7' },
+          { offset: 0.7, color: '#2378f7' },
+          { offset: 1, color: '#83bff6' }
+        ])
+      }
+    },
+    data: [
+      450.08, 436.02, 421.7, 411.73, 409.82, 409.06, 409, 408.74, 408.38, 408.32
+      /* 402.3,
+      402.11,398.52,397.12,396.05,391.92,390.41,387.78,386.33,385.29,383.46,383.04,380.81
+      ,380.09,379.58,367.4,367.36,364.88,361.67,361.52*/
+    ],
+    markPoint: {
+      data: [
+        { type: 'max', name: 'Max' },
+        { type: 'min', name: 'Min' }
+      ]
+    },
+    markLine: {
+      data: [{ type: 'average', name: 'Avg' }]
+    }
+  }
+]
+};
+   myChart.setOption(option);	
+  </script>
+</div>
+
+<div id="circle" class="panel">
+  <script type="text/javascript">
+   var myChart = echarts.init(document.getElementById('circle'));
+   var option = {
+
+  title: {
+  text: '江苏省各市普惠金融指数',
+},
+  tooltip: {
+    trigger: 'item'
+  },
+  legend: {
+    top: '5%',
+    left: 'center'
+  },
+  series: [
+    {
+      name: '',
+      type: 'pie',
+      radius: ['40%', '70%'],
+      avoidLabelOverlap: false,
+      itemStyle: {
+        borderRadius: 10,
+        borderColor: '#fff',
+        borderWidth: 2
+      },
+      label: {
+        show: false,
+        position: 'center'
+      },
+      emphasis: {
+        label: {
+          show: true,
+          fontSize: '40',
+          fontWeight: 'bold'
+        }
+      },
+      labelLine: {
+        show: false
+      },
+      data: [
+        { value: 320.85, name: '南京市' },
+        { value: 311.66, name: '无锡市' },
+        { value: 305.17, name: '徐州市' },
+        { value: 325.35, name: '常州市' },
+        { value: 314.69, name: '苏州市' },
+        { value: 325.92, name: '南通市' },
+        { value: 301.77, name: '连云港市' },
+        { value: 310.92, name: '淮安市' },
+        { value: 305.41, name: '盐城市' },
+        { value: 310.96, name: '扬州市' },
+        { value: 312.33, name: '镇江市' },
+        { value: 305.75, name: '泰州市' },
+        { value: 305.81, name: '宿迁市' }
+
+      ]
+    }
+  ]
+};
+myChart.setOption(option);	
+</script>
+
+</div>
+
+
+
+
+
+
+
+<!--地图-->
+
+<div class="maphead">	 
+<h4>普惠金融指数分布地图<pre>                                                                                                            </pre></h4>
+<span><button style="float:right;" onclick="cancel()">返回上一级</button></span>
+ 
+</div>
+<div id='hh' class="citymap"> 
+  <script>
+    make_city('中国', 'hh');
+  </script>
+</div>
+  
+
+<!--warning-->
+<!--
+<script>
+    window.alert("");
+</script>-->
+
+<div class="maphead2">	 
+  
+  <h4 class="center">江苏省特色产业一览</h4>
+  </div>
+
+
+
+<div class="panel2">
+ <!-- <div class="tb">特色产业<br></div>-->
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th style="background: #fff">地区</th>
+      <th>所在市</th>
+      <th>特色产业</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+      <td><pre>   海陵区       </pre></td>
+      <td><pre>    泰州市    </pre></td>
+      <td>果蔬种植、特水养殖、畜牧繁育、农产品加工</td>
+    </tr> 
+
+    <tr>
+      <td><pre>   惠山区       </pre></td>
+      <td><pre>    无锡市    </pre></td>
+      <td>水蜜桃、蔬菜种植</td>
+    </tr> 
+
+    <tr>
+      <td><pre>   泰兴市       </pre></td>
+      <td><pre>    泰州市    </pre></td>
+      <td>以生猪为基础主导产业，以银杏为特色主导产业，还涉及果蔬种植、农产品加工及农业旅游产业</td>
+    </tr> 
+
+    
+    <tr>
+      <td><pre>   盱眙县       </pre></td>
+      <td><pre>    准安市    </pre></td>
+      <td>虾稻产业、特色生态农业、绿色稻米、龙虾加工等产业</td>
+    </tr> 
+
+    
+    <tr>
+      <td><pre>   东台市       </pre></td>
+      <td><pre>    盐城市    </pre></td>
+      <td>以西瓜、甜叶菊为主导产业</td>
+    </tr>
+
+
+    
+    <tr>
+      <td><pre>   高淳区       </pre></td>
+      <td><pre>    南京市    </pre></td>
+      <td>以螃蟹为主的水产养殖业</td>
+    </tr>
+
+    
+    <tr>
+      <td><pre>   泗阳县       </pre></td>
+      <td><pre>    宿迁市    </pre></td>
+      <td>食品加工、食用菌、设施园艺、休闲观光等主导产业</td>
+    </tr>
+
+    <tr>
+      <td><pre>   锡山区       </pre></td>
+      <td><pre>    无锡市    </pre></td>
+      <td>优质稻米、精细蔬菜两大基础产业；翠竹茶叶、特种水产、景观苗木、时令果品四大特色产业</td>
+    </tr> 
+
+    
+    <tr>
+      <td><pre>   吴江区       </pre></td>
+      <td><pre>    苏州市    </pre></td>
+      <td>以优质粮油（水稻、油菜）为主导产业</td>
+    </tr>
+    
+    <tr>
+      <td><pre>   宝应县       </pre></td>
+      <td><pre>    扬州市    </pre></td>
+      <td>荷藕产业</td>
+    </tr> 
+
+    
+    <tr>
+      <td><pre>   邳州市       </pre></td>
+      <td><pre>    徐州市    </pre></td>
+      <td>大蒜产业</td>
+    </tr>
+
+    <tr>
+      <td><pre>   沭阳县       </pre></td>
+      <td><pre>    宿迁市    </pre></td>
+      <td>花木产业</td>
+    </tr> 
+
+  </tbody>
+</table>
+
+  </table>
+</div>
+
+
+</div>
+
+
+</body>
+</html>
